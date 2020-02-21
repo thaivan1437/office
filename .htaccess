@@ -1,0 +1,157 @@
+RewriteEngine on
+Options -Indexes
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+DirectoryIndex index.php
+
+RewriteRule ^admin$ admin/ [L]
+RewriteRule ^admin/(.*)$ admin/$1 [L]
+
+#link thumb
+RewriteRule ^thumb/([0-9]+)x([0-9]+)/([0-9]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+).([a-zA-Z0-9_-]+)$ timthumb.php?src=http://%{HTTP_HOST}/$4/$5/$6.$8&w=$1&h=$2&zc=$3&q=90  [L]
+
+RewriteRule ^&p=([0-9]+)$ index.php?com=index&p=$1  [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+).html$ index.php?com=$1&mTransactionID=$2&bankCode=$3&transactionStatus=$4&checksum=$5&ts=$6  [L]
+RewriteRule ^([a-zA-Z0-9_-]+)-([0-9]+)&p=([0-9]+)$ index.php?com=van-phong&idc=$2&p=$3 [L]
+RewriteRule ^van-phong-([a-zA-Z0-9_-]+)/$ index.php?com=van-phong&idq=$1 [L]
+RewriteRule ^van-phong-([a-zA-Z0-9_-]+)/&p=([0-9]+)$ index.php?com=van-phong&idq=$1&p=$2 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)-([0-9]+)$ index.php?com=van-phong&idc=$2 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)-([0-9]+)&p=([0-9]+)$ index.php?com=van-phong&idc=$2&p=$2 [L]
+
+RewriteRule ^([a-zA-Z0-9_-]+)&p=([0-9]+)$ index.php?com=$1&p=$2  [L]
+RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?com=$1  [L]
+
+#link văn phòng
+RewriteRule ^toa-nha-([a-zA-Z0-9_-]+)-([0-9]+).html$ index.php?com=van-phong&id=$2 [L]
+
+#link hướng
+RewriteRule ^van-phong-huong-([a-zA-Z0-9_-]+)-([0-9]+).html$ index.php?com=huong&id=$2 [L]
+RewriteRule ^van-phong-huong-([a-zA-Z0-9_-]+)-([0-9]+).html&p=([0-9]+)$ index.php?com=huong&id=$2&p=3 [L]
+
+#link tin tuc
+RewriteRule ^van-phong-([a-zA-Z0-9_-]+)-([0-9]+).html$ index.php?com=tin-tuc&id=$2 [L]
+
+
+
+RewriteRule ^([a-zA-Z0-9_-]+).html&p=([0-9]+)$ index.php?com=$1&p=$2  [L]
+RewriteRule ^([a-zA-Z0-9_-]+).html$ index.php?com=$1  [L]
+
+RewriteRule ^([a-zA-Z0-9_-]+)-([0-9]+)/([a-zA-Z0-9_-]+)-([0-9]+)&p=([0-9]+)$ index.php?com=van-phong&idc=$2&dist=$4&p=$5 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)-([0-9]+)/([a-zA-Z0-9_-]+)-([0-9]+)$ index.php?com=van-phong&idc=$2&dist=$4 [L]
+
+RewriteRule ^([a-zA-Z0-9_-]+)-([0-9]+)-([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)-([0-9]+).html&p=([0-9]+)$ index.php?com=van-phong&id=$5&p=$6 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)-([0-9]+)-([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)-([0-9]+).html$ index.php?com=van-phong&id=$5 [L]
+
+RewriteRule ^([a-zA-Z0-9_-]+).html/keyword=(.*)$ index.php?com=$1&keyword=$2  [L]
+RewriteRule ^([a-zA-Z0-9_-]+).html/keyword=(.*)&p=([0-9]+)$ index.php?com=$1&keyword=$2&p=$3  [L]
+
+#link dientich
+RewriteRule ^dien-tich-([a-zA-Z0-9_-]+)-([0-9]+)/&p=([0-9]+)$ index.php?com=dien-tich&id=$2&p=$3 [L]
+RewriteRule ^dien-tich-([a-zA-Z0-9_-]+)-([0-9]+)/$ index.php?com=dien-tich&id=$2 [L]
+
+RewriteRule ^dien-tich-([a-zA-Z0-9_-]+)-([0-9]+)/([a-zA-Z0-9_-]+)/&p=([0-9]+)$ index.php?com=dien-tich&id=$2&idq=$3&p=$4 [L]
+RewriteRule ^dien-tich-([a-zA-Z0-9_-]+)-([0-9]+)/([a-zA-Z0-9_-]+)/$ index.php?com=dien-tich&id=$2&idq=$3 [L]
+
+#link gia thue
+RewriteRule ^gia-thue-([a-zA-Z0-9_-]+)-([0-9]+)/&p=([0-9]+)$ index.php?com=gia-thue&id=$2&p=$3 [L]
+RewriteRule ^gia-thue-([a-zA-Z0-9_-]+)-([0-9]+)/$ index.php?com=gia-thue&id=$2 [L]
+
+RewriteRule ^gia-thue-([a-zA-Z0-9_-]+)-([0-9]+)/([a-zA-Z0-9_-]+)/&p=([0-9]+)$ index.php?com=gia-thue&id=$2&idq=$3&p=$4 [L]
+RewriteRule ^gia-thue-([a-zA-Z0-9_-]+)-([0-9]+)/([a-zA-Z0-9_-]+)/$ index.php?com=gia-thue&id=$2&idq=$3 [L]
+
+#link ward
+RewriteRule ^phuong-([a-zA-Z0-9_-]+)-([0-9]+)/&p=([0-9]+)$ index.php?com=ward&id=$2&p=$2 [L]
+RewriteRule ^phuong-([a-zA-Z0-9_-]+)-([0-9]+)/$ index.php?com=ward&id=$2 [L]
+
+#link street
+RewriteRule ^duong-([a-zA-Z0-9_-]+)-([0-9]+)/&p=([0-9]+)$ index.php?com=street&id=$2&p=$3 [L]
+RewriteRule ^duong-([a-zA-Z0-9_-]+)-([0-9]+)/$ index.php?com=street&id=$2 [L]
+
+
+#link district
+RewriteRule ^([a-zA-Z0-9_-]+)-([0-9]+)-([a-zA-Z0-9_-]+)/&p=([0-9]+)$ index.php?com=district&idc=$2&id=$2&p=$4 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)-([0-9]+)-([a-zA-Z0-9_-]+)/$ index.php?com=district&idc=$2&id=$2 [L]
+RewriteRule ^van-phong-cho-thue-([a-zA-Z0-9_-]+)/&p=([0-9]+)$ index.php?com=district&id=$1&p=$2 [L]
+RewriteRule ^van-phong-cho-thue-([a-zA-Z0-9_-]+)/$ index.php?com=district&id=$1 [L]
+
+
+RewriteRule ^tag/([a-zA-Z0-9_-]+)/&p=([0-9]+)$ index.php?com=tag&slug=$1&p=$2  [L]
+RewriteRule ^tag/([a-zA-Z0-9_-]+)/$ index.php?com=tag&slug=$1  [L]
+
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)-([0-9]+).html&p=([0-9]+)$ index.php?com=$1&id=$3&p=$4  [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)-([0-9]+).html$ index.php?com=$1&id=$3  [L]
+
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/&p=([0-9]+)$ index.php?com=$1&id=$2&p=$3  [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/$ index.php?com=$1&id=$2  [L]
+
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)-([0-9]+)/&p=([0-9]+)$ index.php?com=$1&idc=$3&p=$4  [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)-([0-9]+)/$ index.php?com=$1&idc=$3  [L]
+
+RewriteRule ^([a-zA-Z0-9_-]+)/([0-9]+)/&p=([0-9]+)$ index.php?com=$1&id=$2&p=$3 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+).html$ index.php?com=$1&act=$2 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([0-9]+)/$ index.php?com=$1&id=$2 [L]
+
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+).html$ index.php?com=$1&act=$2&user=$3&t=$4  [L]
+
+
+# Don't list directory contents
+IndexIgnore */*
+IndexIgnoreReset ON
+
+<FilesMatch "index.php">
+Order Allow,Deny
+Allow from all
+</FilesMatch>
+
+
+<FilesMatch ".*\.(css|js|ico|icon|jpg|jpeg|png|gif|html|woff|tff|pdf|doc|docs|zip|swf|TTF|ttf|woff|woff2)$">
+Order Allow,Deny
+Allow from all
+</FilesMatch>
+
+
+Options +FollowSymlinks
+RewriteEngine On
+RewriteCond %{REMOTE_ADDR} !^(xxx\.xxx\.xxx\.xxx|xxx\.xxx\xxx\.xxx|66\.249\.)
+RewriteCond $1 !^(index\.php|resources|public|robots\.txt)
+
+# Secure php.ini and .htaccess
+RewriteRule ^(php\.ini|\.htaccess) - [NC,F]
+
+# Block shell uploaders, htshells, and other baddies
+RewriteCond %{REQUEST_URI} ((php|my|bypass)?shell|remview.*|phpremoteview.*|sshphp.*|pcom|nstview.*|c99|c100|r57|webadmin.*|phpget.*|phpwriter.*|fileditor.*|locus7.*|storm7.*)\.(p?s?x?htm?l?|txt|aspx?|cfml?|cgi|pl|php[3-9]{0,1}|jsp?|sql|xml) [NC,OR]
+RewriteCond %{REQUEST_URI} (\.exe|\.php\?act=|\.tar|_vti|afilter=|algeria\.php|chbd|chmod|cmd|command|db_query|download_file|echo|edit_file|eval|evil_root|exploit|find_text|fopen|fsbuff|fwrite|friends_links\.|ftp|gofile|grab|grep|htshell|\ -dump|logname|lynx|mail_file|md5|mkdir|mkfile|mkmode|MSOffice|muieblackcat|mysql|owssvr\.dll|passthru|popen|proc_open|processes|pwd|rmdir|root|safe0ver|search_text|selfremove|setup\.php|shell|ShellAdresi\.TXT|spicon|sql|ssh|system|telnet|trojan|typo3|uname|unzip|w00tw00t|whoami|xampp) [NC,OR]
+RewriteCond %{QUERY_STRING} (\.exe|\.tar|act=|afilter=|alter|benchmark|chbd|chmod|cmd|command|cast|char|concat|convert|create|db_query|declare|delete|download_file|drop|edit_file|encode|environ|eval|exec|exploit|find_text|fsbuff|ftp|friends_links\.|globals|gofile|grab|insert|localhost|logname|loopback|mail_file|md5|meta|mkdir|mkfile|mkmode|mosconfig|muieblackcat|mysql|order|passthru|popen|proc_open|processes|pwd|request|rmdir|root|scanner|script|search_text|select|selfremove|set|shell|sql|sp_executesql|spicon|ssh|system|telnet|trojan|truncate|uname|union|unzip|whoami) [NC]
+#RewriteRule .* - [F]
+
+# Only the following file extensions are allowed
+<FilesMatch "\.([Jj][Pp][Ee]?[Gg]?|[Pp][Nn][Gg]|[Gg][Ii][Ff]|[Gg][Zz]|[Pp][Dd][Ff])$">
+Allow from all
+</FilesMatch>
+
+# Only allow GET and POST HTTP methods
+<LimitExcept GET POST>
+Deny from all
+</LimitExcept>
+
+<FilesMatch "index.php">
+Order Allow,Deny
+Allow from all
+</FilesMatch>
+
+#Moved Permanently
+ErrorDocument 301 /
+#Moved Temporarily
+ErrorDocument 302 /
+#Bad request
+ErrorDocument 400 /
+#Authorization Required
+ErrorDocument 401 /
+#Forbidden
+ErrorDocument 403 /
+#Wrong page
+ErrorDocument 404 /
+#Internal Server Error
+ErrorDocument 500 /
